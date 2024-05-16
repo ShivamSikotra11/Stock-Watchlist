@@ -8,7 +8,7 @@ const initialItems = {
   curUser: {},
   toastActive: false,
   toastData: "",
-  url: "http://localhost:8000/",
+  url: "https://stock-watchlist-brown.vercel.app/",
 };
 
 const UserContext = createContext();
