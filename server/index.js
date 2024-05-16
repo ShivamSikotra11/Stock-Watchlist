@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 app.use(cors(
   {
-    origin:[],
+    origin:["https://stock-watchlist-brown.vercel.app","http://localhost:3000"],
     methods:["GET","POST"],
     credentials:true
   }
