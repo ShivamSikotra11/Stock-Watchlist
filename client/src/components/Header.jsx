@@ -22,7 +22,7 @@ const Header = () => {
       <Box className="  font-medium text-[2.3rem] ">Stock Mania</Box>
       <Stack direction="row" spacing={4}>
         <NavLink to="/">Home</NavLink>
-        <NavLink to="/about">About</NavLink>
+        {/* <NavLink to="/about">About</NavLink> */}
         {/* <NavLink to='/contact'>Contact</NavLink> */}
         {loggedIn ? (
           <Box className='cursor-pointer' onClick={getLogOut}>Logout</Box>
