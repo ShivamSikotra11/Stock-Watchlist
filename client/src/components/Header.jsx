@@ -19,7 +19,7 @@ const Header = () => {
       className="f-pop px-12 py-[10px] text-white bg-[#8e5772]"
     >
       {/* text-[#8e5772] */}
-      <Box className="  font-medium text-[2.3rem] ">Stock Mania</Box>
+      <Box className="  font-medium text-[2.3rem] ">Stock Monitoring</Box>
       <Stack direction="row" spacing={4}>
         <NavLink to="/">Home</NavLink>
         {/* <NavLink to="/about">About</NavLink> */}
