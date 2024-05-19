@@ -43,7 +43,7 @@ Check out the live version of the project [here](https://stock-monitoring.vercel
 5. **Frontend Setup**
 
     cd ../client  
-    npm install
+    npm install   
     npm run dev
     
     
@@ -53,14 +53,14 @@ Check out the live version of the project [here](https://stock-monitoring.vercel
 ## Technologies Used
 
 - *Frontend:*
-  - React
+  - React JS
   - Tailwind CSS
   - Material UI
-  - TypeScript
+
 
 - *Backend:*
   - Node.js
-  - Express
+  - Express JS
   - MongoDB
   - bcrypt
   - JSON Web Token (JWT)
