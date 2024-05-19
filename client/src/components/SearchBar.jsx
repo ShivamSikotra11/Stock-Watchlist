@@ -9,7 +9,7 @@ const SearchBar = ({ data }) => {
 
   const handleChange = (event, newValue) => {
     setStock(newValue);
-    console.log(stock, newValue);
+    // console.log(stock, newValue);
     selectStock(getSymbol(newValue));
   };
   return (
@@ -20,8 +20,8 @@ const SearchBar = ({ data }) => {
         clearIcon={null}
         id="combo-box-demo"
         options={data}
+        className="w-[23rem] max-[490px]:w-full"
         sx={{
-          width: "30%",
           "& .MuiOutlinedInput-root": {
             // Customize the input color
             "& fieldset": {

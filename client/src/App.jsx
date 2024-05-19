@@ -11,7 +11,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 const AppWithHeader = () => {
   const location = useLocation();
   const { getLogin, loggedIn,curUser } = useUserContext();
-  const { updateStock } = useStockContext();
+  const { updateStock,getSelectedStock } = useStockContext();
   const [loading, setLoading] = useState(true);
 
   const AbortedRoutesHeader = ["/login", "/register"];
@@ -20,9 +20,7 @@ const AppWithHeader = () => {
     const storedUserData = localStorage.getItem("userData");
     if (storedUserData) {
       const userData = JSON.parse(storedUserData);
-       
-      
-      Promise.all([getLogin(userData), updateStock(userData)])
+      Promise.all([getLogin(userData), updateStock(userData),getSelectedStock()])
         .then(() => setLoading(false))
         .catch((error) => {
           console.error("Error fetching data:", error);
@@ -40,6 +38,7 @@ const AppWithHeader = () => {
     if (storedUserData) {
       const userData = JSON.parse(storedUserData);
       updateStock(userData);
+      getSelectedStock();
     } 
   }, [loggedIn]);
 

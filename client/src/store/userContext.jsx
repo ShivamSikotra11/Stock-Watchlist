@@ -8,7 +8,10 @@ const initialItems = {
   curUser: {},
   toastActive: false,
   toastData: "",
-  url: "https://stock-watchlist-brown.vercel.app/",
+  isCredentialsFetching:false,
+  // url: "https://stock-watchlist-brown.vercel.app/",
+  url: "http://localhost:8000/",
+  isCredentialError:[false,""],
 };
 
 const UserContext = createContext();
@@ -18,27 +21,38 @@ const userProvider = ({ children }) => {
   // const redirect = useNavigate();
   
 
-  
+  const AlterCredentialError = (flag, message) => {
+    dispatch({type:"ALTER_CREDENTIALS_ERROR",payload:{flag,message}})
+  };
   const getRegister = async (redirect, userData) => {
     try {
-      const resp = await axios.post(`${state.url}register/`, userData);
-      // dispatch({type:'SET_TOAST',payload:{msg:'User Registered Successfully',type:'success'}});
-      // console.log(resp);
+      dispatch({ type: 'ALTER_CREDENTIALS_FETCHING' });
+      await axios.post(`${state.url}register/`, userData);
       getLogin(userData, true);
+      dispatch({ type: 'ALTER_CREDENTIALS_FETCHING' });
       redirect("/");
     } catch (error) {
+      AlterCredentialError(true,error.response.data.message);
+      dispatch({ type: 'ALTER_CREDENTIALS_FETCHING' });
       console.log(error);
     }
   };
+ 
+  
 
   const handleLoginSubmit = async (redirect, userData) => {
+ 
     try {
+      dispatch({ type: 'ALTER_CREDENTIALS_FETCHING' });
       const resp = await axios.post(`${state.url}login/`, userData);
-      dispatch({ type: "SET_USER", payload: resp.data });
-      localStorage.setItem("userData", JSON.stringify({...userData,name:resp.data.name}));
+      dispatch({ type: "SET_USER", payload: { name:resp.data,email:userData.email } });
+      localStorage.setItem("userData", JSON.stringify({name:resp.data.name,email:userData.email}));
+      dispatch({ type: 'ALTER_CREDENTIALS_FETCHING' });
       redirect("/");
     } catch (error) {
-      console.log(error);
+      AlterCredentialError(true,error.response.data.message);
+      dispatch({ type: 'ALTER_CREDENTIALS_FETCHING' });
+      // console.log(error.response.data.message); 
     }
   };
   const getLogin = (userData, flag = false) => {
@@ -49,14 +63,27 @@ const userProvider = ({ children }) => {
     dispatch({ type: "UNSET_USER" });
     localStorage.removeItem("userData");
   };
-  function getNameAcronym(sentence="") {
+  const getNameAcronym = (sentence) => {
+    // Check if the sentence is a string
+    if (typeof sentence !== "string") {
+      return ""; // Return empty string if not a string
+    }
+  
+    // Split the sentence into words
     const words = sentence.split(" ");
-    const newWord = words.reduce((acc, word) => acc + word.charAt(0), "");
-    return newWord.substring(0, 2).toUpperCase();
-  }
+    
+    // Get the first letter of each word and join them
+    const acronym = words.map(word => word[0]).join("");
+  
+    return acronym.toUpperCase(); // Convert to uppercase and return
+  };
+  
+  // function AlterLoginFetch() {
+  //   dispatch({ type: 'ALTER_LOGIN_FETCHING' });
+  // }
   return (
     <UserContext.Provider
-      value={{ ...state, getRegister, handleLoginSubmit, getLogin, getLogOut,getNameAcronym }}
+      value={{ ...state, getRegister, handleLoginSubmit, getLogin, getLogOut,getNameAcronym,AlterCredentialError }}
     >
       {children}
     </UserContext.Provider>

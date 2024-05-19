@@ -13,6 +13,12 @@ const userSchema = new mongoose.Schema({
     max: 255,
     min: 6
   },
+  curStock: {
+    type: String,
+    required: true,
+    max: 255,
+    min: 6
+  },
   password: {
     type: String,
     required: true,

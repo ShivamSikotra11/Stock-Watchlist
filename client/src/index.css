@@ -23,3 +23,15 @@
   font-weight: 300;
   font-style: normal;
 }
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px; 
+  height: 6px; 
+  margin-left:10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #8e5772; 
+  border-radius: 6px;
+}
+
+ 

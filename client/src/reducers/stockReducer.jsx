@@ -31,6 +31,11 @@ const stockReducer = (state, action) => {
         ...state,
         curStockFetching:!state.curStockFetching,
       }
+    case "ALTER_SELECT_STOCK_LOADING":
+      return {
+        ...state,
+        selectStockLoading:!state.selectStockLoading,
+      }
     default:
       return state;
   }
