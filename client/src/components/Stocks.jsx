@@ -147,7 +147,7 @@ const Stocks = () => {
         ) : (
           <>
             {userStocks.length === 0 ? (
-              <Box className="text-3xl text-gray-500">
+              <Box className="text-3xl text-center whitespace-nowrap text-gray-500">
                 No stocks in Watchlist
               </Box>
             ) : (

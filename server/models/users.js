@@ -15,7 +15,6 @@ const userSchema = new mongoose.Schema({
   },
   curStock: {
     type: String,
-    required: true,
     max: 255,
     min: 6
   },
