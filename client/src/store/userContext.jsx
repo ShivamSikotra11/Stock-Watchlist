@@ -9,8 +9,8 @@ const initialItems = {
   toastActive: false,
   toastData: "",
   isCredentialsFetching:false,
-  // url: "https://stock-watchlist-brown.vercel.app/",
-  url: "http://localhost:8000/",
+  url: "https://stock-watchlist-brown.vercel.app/",
+  // url: "http://localhost:8000/",
   isCredentialError:[false,""],
 };
 

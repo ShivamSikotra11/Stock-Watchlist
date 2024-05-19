@@ -6,14 +6,14 @@ const userModel = require("./models/users")
 
 const app = express();
 app.use(express.json());
-app.use(cors());
-// app.use(cors(
-//   {
-//     origin:["https://stock-watchlist-brown.vercel.app","http://localhost:3000","https://stock-monitoring.vercel.app","http://localhost:5173"],
-//     methods:["GET","POST"],
-//     credentials:true
-//   }
-// ));
+// app.use(cors());
+app.use(cors(
+  {
+    origin:["https://stock-watchlist-brown.vercel.app","http://localhost:3000","https://stock-monitoring.vercel.app","http://localhost:5173"],
+    methods:["GET","POST"],
+    credentials:true
+  }
+));
 
 app.post("/register", async (req, res) => {
   const { name, email, password } = req.body;

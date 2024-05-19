@@ -47,7 +47,7 @@ const stockProvider = ({ children }) => {
       console.error("Error fetching data:", error);
     }
   };
-
+  
   const getSelectedStock = async () => {
     // console.log("getStock called");
     try {
